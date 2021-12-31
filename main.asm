@@ -4,7 +4,7 @@
 ; Created: 30/12/2021 09:54:37
 ; Author : Bruno Martins
 start:
-    LDI R16, 0x00 ; armazena o resultado a ser armazenado na memória.
+    	LDI R16, 0x00 ; armazena o resultado a ser armazenado na memória.
 	MOV R0, R16 ; move o conteúdo do registrador R16 para R0
 	LDI R16, 0x02 ; b = 2.
 	MOV R1, R16 ;  move o conteúdo do registrador R16 para R1
