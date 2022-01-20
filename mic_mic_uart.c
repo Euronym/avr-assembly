@@ -1,10 +1,3 @@
-#include <avr/io.h>          //definições do componente
-#define F_CPU 8000000UL      //frequência de operação
-#define BAUD 9600            //taxa de 9600 bps
-#include <util/delay.h>
-
-//Prototipos de funções
-void    uartBegin (uint32_t baud, uint32_t freq_cpu);//inicializa uart
 uint8_t uartTxOk  (void);        //verifica se dado pode ser enviado
 void    uartTx    (uint8_t dado);//Envia um byte pela porta uart
 uint8_t uartRxOk  (void);        //verifica se uart possui novo dado
@@ -38,7 +31,7 @@ int main (void)
 					if(cont >= 5){ // se o led executou 5 vezes, finalize.
 						uartString("execução finalizada, pressione b novamente. ");
 						cont = 0; // zera o valor da variável contadora.
-						break; // quebra o laço e pede ao usuário uma nova entrada.
+						break; // quebra o laço e pede ao usuário uma nova en
 					}
 				}
 			}
@@ -54,6 +47,19 @@ void uartBegin(uint32_t baud, uint32_t freq_cpu)
 	UCSR0A = 0;//desabilitar velocidade dupla (no Arduino é habilitado por padrão)
 	UCSR0B = (1<<RXEN0)|(1<<TXEN0);//habilita a transmissão e recepção. Sem interrupcao
 	UCSR0C = (1<<UCSZ01)|(1<<UCSZ00);//assíncrono, 8 bits, 1 bit de parada, sem paridade
+}
+
+
+
+//verifica se novo dado pode ser enviado pela UART
+//retorna valor 32 se novo dado pode ser enviado. Zero se não.
+uint8_t uartTxOk (void)
+{ return (UCSR0A & (1<<UDRE0));}
+
+
+//Envia um byte pela porta uart
+void uartTx(uint8_t dado)
+{ UDR0 = dado;//envia dado
 }
 
 
@@ -77,4 +83,6 @@ void uartString(char *c)
 		uartTx(*c);
 	}
 }
+
+
 
