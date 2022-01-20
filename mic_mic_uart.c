@@ -29,7 +29,7 @@ int main (void)
 					PORTB = 0b0001000; // acende verde
 					_delay_ms(1000);
 					if(cont >= 5){ // se o led executou 5 vezes, finalize.
-						uartString("execução finalizada, pressione b novamente. ");
+						uartString("execução finalizada, pressione b novamente. \r\n");
 						cont = 0; // zera o valor da variável contadora.
 						break; // quebra o laço e pede ao usuário uma nova en
 					}
