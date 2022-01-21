@@ -13,7 +13,7 @@ int main (void)
 { 
 	uint8_t  cont = 0; // variável sentinela para controlar as execuções do laço
 	uint8_t  dado_rx; //variável para armazenar dado recebido
-	DDRB  = 0b0111111; //Pinos de PB entrada, exceto PB5 (saída). 00111111
+	DDRB  = 0b0111000; //Pinos PB3, PB4 e PB5 definidos como saída
 	uartBegin(BAUD, F_CPU);//inicializar uart
 	uartString("pressione b para iniciar o semáforo: \r\n"); // sinaliza ao usuário o botão a ser pressionado.
 	while(1){
